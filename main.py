@@ -59,13 +59,12 @@ options = """-o=output directory
 -h help
 -eg for -s examples"""
 helptext = "current options are:" + options + """\n basic instructions- pipe json into stdin (hint- use curl for web or '< filename' from a file)
-if -o is used, the program will create a file tree based on the json input- lists will create a set of directories numberd after the positive intitgers, and the values are stored in plain text files
-    if no =path is used, the program writes to /jsonout as standard
-if -s is used, then a pattern should be passed to tell the program what to pass on. if no pattern is passed, it the program will act as a transparent pipe, and print every line it is passed to stdout.
-    a pattern should be constucted in the following form:
+If -o is used, the program will create a file tree based on the json input- lists will create a set of directories numbered after the positive intitgers, and the values are stored in plain text files.
+    If no =path is used, the program writes to /jsonout as standard
+If -s<pattern> is used, then a pattern should be passed to tell the program what to pass on. If no pattern is passed, it the program will act as a transparent pipe, and print every line it is passed to stdout.
+    A pattern should be constucted in the following form:
     '@<segment>@<segment>@<segment>' (quotes included)
-    where a segment is one of:
-    {string, string2}  matches any key which is equal to string1 or string 2. ints can also be used in the list{1,2} returns the first or seccond items in a list
+    Where a segment is a python regex to match each level of the filetree. leave a null string(<pattern>@@<pattern> to match any text or number)
 use -eg for examples"""
 for arg in sys.argv[1:]:
     if arg[:2] == "-o":
